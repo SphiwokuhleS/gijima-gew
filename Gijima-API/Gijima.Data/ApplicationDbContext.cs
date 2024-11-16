@@ -1,3 +1,4 @@
+using Gijima.Data.DataModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -26,4 +27,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         base.OnModelCreating(modelBuilder);
         modelBuilder.HasDefaultSchema(_schema);
     }
+    public DbSet<Job> Jobs { get; set; }
 }
