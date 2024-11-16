@@ -10,10 +10,15 @@ const getToken = () => {
     }
 }
 
+const askUserLocation = () => {
+
+}
+
 const initialState = {
     email: null,
     isAuthenticated: getToken(),
     token: null,
+    location: null,
 };
 
 const authSlice = createSlice({

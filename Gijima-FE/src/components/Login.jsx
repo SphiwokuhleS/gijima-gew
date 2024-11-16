@@ -2,9 +2,11 @@ import Input from "./functional/Input";
 import Button from "./functional/Button.jsx";
 import {useState} from "react";
 import { useDispatch } from 'react-redux';
-// import {axios} from 'axios';
 import {setAuthState} from "../features/auth/userSlice.jsx";
 import {useNavigate} from "react-router-dom";
+import axios from 'axios';
+import api from "../manageBaseUrl.jsx";
+
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -17,10 +19,14 @@ export default function Login() {
         e.preventDefault();
 
         try {
+            console.log(api)
 
-            // const response = await axios.post('/api/auth/login', { email, password });
-            // const { token } = response.data;
-            const token = "MockToken"
+            const response = await axios.post(`/Login/PostLogin`, { Username: email, Password: password });
+
+            const { token } = response.data;
+
+            console.log(token);
+            // const token = "MockToken"
 
             localStorage.setItem('token', token);
             dispatch(setAuthState({ email, token }));

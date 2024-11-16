@@ -50,24 +50,32 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             OnAuthenticationFailed = context =>
             {
-                // Log authentication failure
                 Console.WriteLine("Authentication failed: " + context.Exception.Message);
                 return Task.CompletedTask;
             },
             OnTokenValidated = context =>
             {
-                // Log token validation success
                 Console.WriteLine("Token validated");
                 return Task.CompletedTask;
             }
         };
 
     });
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowSpecificOrigins",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
+app.UseCors("AllowSpecificOrigins");
 
 if (!app.Environment.IsDevelopment())
 {
@@ -76,12 +84,12 @@ if (!app.Environment.IsDevelopment())
         var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         try
         {
-            if (dbContext.Database.GetPendingMigrations().Any())
-            {
-                dbContext.Database.Migrate();
-                Console.WriteLine("Database migration applied successfully.");
-
-            }
+            // if (dbContext.Database.GetPendingMigrations().Any())
+            // {
+            dbContext.Database.Migrate();
+            Console.WriteLine("Database migration applied successfully.");
+            //     
+            // }
         }
         catch (Exception ex)
         {
