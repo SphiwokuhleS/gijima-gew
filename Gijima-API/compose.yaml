@@ -1,0 +1,6 @@
+﻿services:
+  gijima.api:
+    image: gijima.api
+    build:
+      context: .
+      dockerfile: Gijima.API/Dockerfile
