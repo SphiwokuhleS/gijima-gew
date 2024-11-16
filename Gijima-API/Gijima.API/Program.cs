@@ -42,8 +42,12 @@ if (!app.Environment.IsDevelopment())
         var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         try
         {
-            dbContext.Database.Migrate();
-            Console.WriteLine("Database migration applied successfully.");
+            if (dbContext.Database.GetPendingMigrations().Any())
+            {
+                dbContext.Database.Migrate();
+                Console.WriteLine("Database migration applied successfully.");
+
+            }
         }
         catch (Exception ex)
         {
