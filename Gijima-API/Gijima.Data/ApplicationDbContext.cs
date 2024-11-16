@@ -28,4 +28,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         modelBuilder.HasDefaultSchema(_schema);
     }
     public DbSet<Job> Jobs { get; set; }
+    public DbSet<Area> Area { get; set; }
+    public DbSet<Offer> Offer { get; set; }
 }
