@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gijima.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241116124918_job_migration")]
+    [Migration("20241116132345_job_migration")]
     partial class job_migration
     {
         /// <inheritdoc />
