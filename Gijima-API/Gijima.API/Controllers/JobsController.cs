@@ -11,9 +11,16 @@ public class JobsController(ApplicationDbContext db) : Controller
     private readonly ApplicationDbContext _db = db;
 
     #region CRUD
-    public async Task<List<Job>> GetAll()
+    public async Task<List<Job>> GetAll(string? name)
     {
-        return await _db.Jobs.ToListAsync();
+        
+        IQueryable<Gijima. Data. DataModels. Job> jobs = _db.Jobs;
+        if (!string.IsNullOrEmpty(name))
+        {
+            jobs = jobs.Include(x => x.Area).
+                Where(x => x.Area.Name.ToLower().Contains(name.ToLower()));
+        }
+        return await jobs.ToListAsync();
     }
 
     public async Task<Job> GetById(int id)
@@ -27,7 +34,7 @@ public class JobsController(ApplicationDbContext db) : Controller
     }
 
     [HttpPost]
-    public async Task<JsonResult> Create(Job job)
+    public async Task<JsonResult> Create([FromBody]Job job)
     {
         var result = new JsonResultVm
         {

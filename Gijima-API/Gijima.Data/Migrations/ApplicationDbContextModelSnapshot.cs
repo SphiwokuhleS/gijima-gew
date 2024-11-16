@@ -104,9 +104,6 @@ namespace Gijima.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("JobId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
@@ -120,8 +117,6 @@ namespace Gijima.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("JobId");
 
                     b.HasIndex("UserId");
 
@@ -138,6 +133,9 @@ namespace Gijima.Data.Migrations
 
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("AreaId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -163,6 +161,8 @@ namespace Gijima.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AreaId");
 
                     b.HasIndex("ProviderId");
 
@@ -378,21 +378,21 @@ namespace Gijima.Data.Migrations
 
             modelBuilder.Entity("Gijima.Data.DataModels.Area", b =>
                 {
-                    b.HasOne("Gijima.Data.DataModels.Job", "Job")
-                        .WithMany()
-                        .HasForeignKey("JobId");
-
                     b.HasOne("Gijima.Data.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Job");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Gijima.Data.DataModels.Job", b =>
                 {
+                    b.HasOne("Gijima.Data.DataModels.Area", "Area")
+                        .WithMany()
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Gijima.Data.ApplicationUser", "Provider")
                         .WithMany()
                         .HasForeignKey("ProviderId");
@@ -402,6 +402,8 @@ namespace Gijima.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Area");
 
                     b.Navigation("Provider");
 

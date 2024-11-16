@@ -28,7 +28,7 @@ public class AreaController (ApplicationDbContext db) : Controller
     }
 
     [HttpPost]
-    public async Task<JsonResult> Create(Area area)
+    public async Task<JsonResult> Create([FromBody]Area area)
     {
         var result = new JsonResultVm
         {
@@ -47,7 +47,7 @@ public class AreaController (ApplicationDbContext db) : Controller
     }
     
     [HttpPost]
-    public async Task<JsonResult> Update(Area area)
+    public async Task<JsonResult> Update([FromBody]Area area)
     {
         var result = new JsonResultVm
         {

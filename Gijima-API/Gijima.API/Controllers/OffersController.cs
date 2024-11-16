@@ -28,7 +28,7 @@ public class OffersController (ApplicationDbContext db) : Controller
     }
 
     [HttpPost]
-    public async Task<JsonResult> Create(Offer offer)
+    public async Task<JsonResult> Create([FromBody]Offer offer)
     {
         var result = new JsonResultVm
         {
@@ -47,7 +47,7 @@ public class OffersController (ApplicationDbContext db) : Controller
     }
     
     [HttpPost]
-    public async Task<JsonResult> Update(Offer offer)
+    public async Task<JsonResult> Update([FromBody]Offer offer)
     {
         var result = new JsonResultVm
         {
