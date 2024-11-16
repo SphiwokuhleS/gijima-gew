@@ -9,7 +9,7 @@ export default function JobsList() {
             <div className="overflow-auto">
             </div>
             {listedJobs.map((job) => (
-                <Job key={job.id} job={job} />
+                <Job key={'job-' + job.id} job={job} />
             ))}
         </div>
     )

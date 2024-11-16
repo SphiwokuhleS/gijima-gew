@@ -34,7 +34,7 @@ export default function BidList() {
             <div className="overflow-auto">
             </div>
             {bids.map((bid) => (
-                <Bid key={bid.id} bid={bid} />
+                <Bid key={'bid-' + bid.id} bid={bid} />
             ))}
         </div>
     )

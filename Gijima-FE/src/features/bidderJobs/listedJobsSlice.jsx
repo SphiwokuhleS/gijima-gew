@@ -5,7 +5,7 @@ import ListedJobModel from "./listedJobModel.jsx";
 const initialState = {
     jobs: [
         new ListedJobModel({
-            "id": 2,
+            "id": 1,
             "user_id": 2,
             "customer_id": 3,
             "date": "2024-02-01",
@@ -18,7 +18,7 @@ const initialState = {
 
         }),
         new ListedJobModel({
-            "id": 3,
+            "id": 2,
             "user_id": 3,
             "customer_id": 1,
             "date": "2024-02-01",
@@ -30,7 +30,7 @@ const initialState = {
             "bid": null,
         }),
         new ListedJobModel({
-            "id": 1,
+            "id": 3,
             "user_id": 1,
             "customer_id": 2,
             "date": "2024-02-01",
@@ -42,7 +42,7 @@ const initialState = {
             "bid": null,
         }),
         new ListedJobModel({
-            "id": 2,
+            "id": 4,
             "user_id": 2,
             "customer_id": 3,
             "date": "2024-02-01",
@@ -54,7 +54,7 @@ const initialState = {
             "bid": null,
         }),
         new ListedJobModel({
-            "id": 3,
+            "id": 5,
             "user_id": 3,
             "customer_id": 1,
             "date": "2024-02-01",
@@ -66,7 +66,7 @@ const initialState = {
             "bid": null,
         }),
         new ListedJobModel({
-            "id": 1,
+            "id": 6,
             "user_id": 1,
             "customer_id": 2,
             "date": "2024-02-01",
@@ -78,7 +78,7 @@ const initialState = {
             "bid": null,
         }),
         new ListedJobModel({
-            "id": 2,
+            "id": 7,
             "user_id": 2,
             "customer_id": 3,
             "date": "2024-02-01",
@@ -90,7 +90,7 @@ const initialState = {
             "bid": null,
         }),
         new ListedJobModel({
-            "id": 3,
+            "id": 8,
             "user_id": 3,
             "customer_id": 1,
             "date": "2024-02-01",
