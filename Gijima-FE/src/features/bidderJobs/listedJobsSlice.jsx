@@ -108,6 +108,9 @@ const listedJobsSlice = createSlice({
     name: 'listedJobs',
     initialState,
     reducers: {
+        setJobs: (state, action) => {
+            state.jobs = action.payload.map((job) => new ListedJobModel(job));
+        },
         setBid: (state, action) => {
             const { bid } = action.payload;
             state.bid = bid;
@@ -116,5 +119,5 @@ const listedJobsSlice = createSlice({
     },
 });
 
-export const { addBidToJob, setMyBid } = listedJobsSlice.actions;
+export const { setBid, setJobs } = listedJobsSlice.actions;
 export const listedJobsReducer = listedJobsSlice.reducer;
