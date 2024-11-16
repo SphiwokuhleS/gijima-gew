@@ -1,13 +1,12 @@
-import Login from "./components/Login.jsx";
+import CreateOrEditJob from "./components/CreateOrEditJob.jsx";
 
 function App() {
   return (
     <>
         <div>
-            <Login />
+            <CreateOrEditJob />
         </div>
     </>
   )
 }
-
 export default App
