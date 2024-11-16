@@ -1,3 +1,4 @@
+using Gijima.Data.DataModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,7 @@ namespace Gijima.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
 {
-    private const string _schema = "SmartBackup";
+    private const string _schema = "gijima";
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
@@ -18,7 +19,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5432;Database=app;Username=admin;Password=admin;");
+        optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5436;Database=app;Username=admin;Password=admin;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,4 +27,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         base.OnModelCreating(modelBuilder);
         modelBuilder.HasDefaultSchema(_schema);
     }
+    public DbSet<Job> Jobs { get; set; }
 }
