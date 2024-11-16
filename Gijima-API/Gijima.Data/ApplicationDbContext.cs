@@ -19,7 +19,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=postgres-db;Port=5432;Database=app;Username=admin;Password=admin;");
+        optionsBuilder.UseNpgsql("Host=localhost;Port=5436;Database=app;Username=admin;Password=admin;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,6 +27,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         base.OnModelCreating(modelBuilder);
         modelBuilder.HasDefaultSchema(_schema);
     }
+    
     public DbSet<Job> Jobs { get; set; }
     public DbSet<Area> Area { get; set; }
     public DbSet<Offer> Offer { get; set; }

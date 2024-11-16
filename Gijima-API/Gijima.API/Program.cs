@@ -1,7 +1,9 @@
 using System.Text;
 using Gijima.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,38 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     .AddUserManager<UserManager<ApplicationUser>>()
     .AddRoleManager<RoleManager<IdentityRole>>()
     .AddSignInManager<SignInManager<ApplicationUser>>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+        
+        options.Events = new JwtBearerEvents
+        {
+            OnAuthenticationFailed = context =>
+            {
+                // Log authentication failure
+                Console.WriteLine("Authentication failed: " + context.Exception.Message);
+                return Task.CompletedTask;
+            },
+            OnTokenValidated = context =>
+            {
+                // Log token validation success
+                Console.WriteLine("Token validated");
+                return Task.CompletedTask;
+            }
+        };
+
+    });
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
