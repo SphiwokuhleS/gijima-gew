@@ -3,7 +3,7 @@ import pendingIcon from '../assets/icons8-pending.svg';
 
 export default function ({job}) {
     return (
-        <div className="flex flex-col bg-gray-200 rounded-md mb-4 p-2">
+        <div className="flex flex-col bg-gray-200 rounded-md mb-4 p-2 drop-shadow-sm">
             <div className="flex justify-between">
                 <h1 className="text-lg font-bold">{job.title}</h1>
                 <p className="text-sm italic leading-7">{job.date}</p>

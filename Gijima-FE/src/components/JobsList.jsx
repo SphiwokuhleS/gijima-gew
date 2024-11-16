@@ -106,7 +106,6 @@ export default function JobsList() {
         <div className="px-2 lg:px-4">
             <h1 className="font-bold text-xl mb-4">Jobs in your area:</h1>
             <div className="overflow-auto">
-
             </div>
             {jobs.map((job) => (
                 <Job key={job.id} job={job} />

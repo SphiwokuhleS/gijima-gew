@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PrivateRoute from "./features/auth/privateRoute.jsx";
 import Login from "./components/Login.jsx";
 import HomePage from "./components/HomePage.jsx";
+import JobsList from "./components/JobsList.jsx";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Route element={<PrivateRoute />}>
                     <Route path="/" element={<HomePage />} />
                     {/* Add more protected routes here */}
+                    <Route path="/jobs" element={<JobsList/>}/>
                 </Route>
             </Routes>
         </Router>
