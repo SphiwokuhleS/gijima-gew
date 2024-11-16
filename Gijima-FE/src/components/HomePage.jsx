@@ -1,5 +1,7 @@
 import {useState} from "react";
-export default function Profile() {
+
+
+export default function HomePage() {
     const [user, setUser] = useState({
         "id": 1,
         "username": "john_doe",
