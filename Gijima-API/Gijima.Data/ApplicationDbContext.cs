@@ -26,6 +26,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.HasDefaultSchema(_schema);
+        modelBuilder.Seed();
     }
     
     public DbSet<Job> Jobs { get; set; }

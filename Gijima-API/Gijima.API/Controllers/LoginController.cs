@@ -18,14 +18,16 @@ public class LoginController(ApplicationDbContext db, IConfiguration config,
     private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
     
     [HttpPost]
-    public async Task<IActionResult> Index([FromBody] LoginModel login)
+    public async Task<IActionResult> PostLogin([FromBody] LoginModel login)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        var user = await _userManager.FindByNameAsync(login.Username);
+        var users = _db.Users.ToList();
+
+        var user = await _userManager.FindByEmailAsync(login.Username);
 
         if (user == null)
         {
