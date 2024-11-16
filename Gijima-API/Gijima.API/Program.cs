@@ -1,3 +1,4 @@
+using System.Text;
 using Gijima.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,24 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        try
+        {
+            dbContext.Database.Migrate();
+            Console.WriteLine("Database migration applied successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while applying migrations: {ex.Message}");
+            throw;
+        }
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
