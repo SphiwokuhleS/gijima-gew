@@ -9,6 +9,6 @@ services:
       POSTGRES_USER: admin
       POSTGRES_DB: app
     ports:
-      - "5432:5432"
+      - "5436:5432"
   # Add Server here
       
