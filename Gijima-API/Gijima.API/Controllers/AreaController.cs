@@ -12,12 +12,12 @@ public class AreaController (ApplicationDbContext db) : Controller
     
     #region CRUD
 
-    public async Task<List<Area>> GetAllAreas()
+    public async Task<List<Area>> GetAll()
     {
         return await _db.Area.ToListAsync();
     }
 
-    public async Task<Area> GetAreaById(int id)
+    public async Task<Area> GetById(int id)
     {
         var area = await _db.Area.FindAsync(id);
 
@@ -28,7 +28,7 @@ public class AreaController (ApplicationDbContext db) : Controller
     }
 
     [HttpPost]
-    public async Task<JsonResult> CreateArea(Area area)
+    public async Task<JsonResult> Create(Area area)
     {
         var result = new JsonResultVm
         {
@@ -47,7 +47,7 @@ public class AreaController (ApplicationDbContext db) : Controller
     }
     
     [HttpPost]
-    public async Task<JsonResult> UpdateArea(Area area)
+    public async Task<JsonResult> Update(Area area)
     {
         var result = new JsonResultVm
         {
@@ -65,7 +65,7 @@ public class AreaController (ApplicationDbContext db) : Controller
     }
 
     [HttpPost]
-    public async Task<JsonResult> DeleteJob(int id)
+    public async Task<JsonResult> Delete(int id)
     {
         var result = new JsonResultVm
         {

@@ -6,46 +6,48 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Gijima.API.Controllers;
 
-public class JobsController(ApplicationDbContext db) : Controller
+public class OffersController (ApplicationDbContext db) : Controller
 {
     private readonly ApplicationDbContext _db = db;
-
+    
     #region CRUD
-    public async Task<List<Job>> GetAll()
+
+    public async Task<List<Offer>> GetAll()
     {
-        return await _db.Jobs.ToListAsync();
+        return await _db.Offer.ToListAsync();
     }
 
-    public async Task<Job> GetById(int id)
+    public async Task<Offer> GetById(int id)
     {
-        var job = await _db.Jobs.FindAsync(id);
+        var offer = await _db.Offer.FindAsync(id);
 
-        if (job == null)
-            throw new KeyNotFoundException($"Job with ID {id} was not found.");
+        if (offer == null)
+            throw new KeyNotFoundException($"Offer with ID {id} was not found.");
         
-        return job;
+        return offer;
     }
 
     [HttpPost]
-    public async Task<JsonResult> Create(Job job)
+    public async Task<JsonResult> Create(Offer offer)
     {
         var result = new JsonResultVm
         {
             Success = false
         };
-
-        if (!ModelState.IsValid) return Json(result);
         
-        _db.Jobs.Add(job);
+        if (!ModelState.IsValid)
+            return Json(result);
+        
+        _db.Offer.Add(offer);
         await _db.SaveChangesAsync();
-            
+        
         result.Success = true;
-
+        
         return Json(result);
     }
-
+    
     [HttpPost]
-    public async Task<JsonResult> Update(Job job)
+    public async Task<JsonResult> Update(Offer offer)
     {
         var result = new JsonResultVm
         {
@@ -54,7 +56,7 @@ public class JobsController(ApplicationDbContext db) : Controller
 
         if (!ModelState.IsValid) return Json(result);
         
-        _db.Jobs.Update(job);
+        _db.Offer.Update(offer);
         await _db.SaveChangesAsync();
             
         result.Success = true;
@@ -70,12 +72,12 @@ public class JobsController(ApplicationDbContext db) : Controller
             Success = false
         };
         
-        var job = await _db.Jobs.FindAsync(id);
+        var offer = await _db.Offer.FindAsync(id);
         
-        if (job == null)
-            throw new KeyNotFoundException($"Job with ID {id} was not found.");
+        if (offer == null)
+            throw new KeyNotFoundException($"Offer with ID {id} was not found.");
         
-        _db.Jobs.Remove(job);
+        _db.Offer.Remove(offer);
         await _db.SaveChangesAsync();
 
         result.Success = true;
@@ -84,4 +86,5 @@ public class JobsController(ApplicationDbContext db) : Controller
     }
 
     #endregion
+    
 }
