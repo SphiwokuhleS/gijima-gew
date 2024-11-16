@@ -6,46 +6,48 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Gijima.API.Controllers;
 
-public class JobsController(ApplicationDbContext db) : Controller
+public class AreaController (ApplicationDbContext db) : Controller
 {
     private readonly ApplicationDbContext _db = db;
-
+    
     #region CRUD
-    public async Task<List<Job>> GetAllJobs()
+
+    public async Task<List<Area>> GetAllAreas()
     {
-        return await _db.Jobs.ToListAsync();
+        return await _db.Area.ToListAsync();
     }
 
-    public async Task<Job> GetJobById(int id)
+    public async Task<Area> GetAreaById(int id)
     {
-        var job = await _db.Jobs.FindAsync(id);
+        var area = await _db.Area.FindAsync(id);
 
-        if (job == null)
-            throw new KeyNotFoundException($"Job with ID {id} was not found.");
+        if (area == null)
+            throw new KeyNotFoundException($"Area with ID {id} was not found.");
         
-        return job;
+        return area;
     }
 
     [HttpPost]
-    public async Task<JsonResult> CreateJob(Job job)
+    public async Task<JsonResult> CreateArea(Area area)
     {
         var result = new JsonResultVm
         {
             Success = false
         };
-
-        if (!ModelState.IsValid) return Json(result);
         
-        _db.Jobs.Add(job);
+        if (!ModelState.IsValid)
+            return Json(result);
+        
+        _db.Area.Add(area);
         await _db.SaveChangesAsync();
-            
+        
         result.Success = true;
-
+        
         return Json(result);
     }
-
+    
     [HttpPost]
-    public async Task<JsonResult> UpdateJob(Job job)
+    public async Task<JsonResult> UpdateArea(Area area)
     {
         var result = new JsonResultVm
         {
@@ -54,7 +56,7 @@ public class JobsController(ApplicationDbContext db) : Controller
 
         if (!ModelState.IsValid) return Json(result);
         
-        _db.Jobs.Update(job);
+        _db.Area.Update(area);
         await _db.SaveChangesAsync();
             
         result.Success = true;
@@ -70,12 +72,12 @@ public class JobsController(ApplicationDbContext db) : Controller
             Success = false
         };
         
-        var job = await _db.Jobs.FindAsync(id);
+        var area = await _db.Area.FindAsync(id);
         
-        if (job == null)
+        if (area == null)
             throw new KeyNotFoundException($"Job with ID {id} was not found.");
         
-        _db.Jobs.Remove(job);
+        _db.Area.Remove(area);
         await _db.SaveChangesAsync();
 
         result.Success = true;
