@@ -29,4 +29,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     }
     public DbSet<Job> Jobs { get; set; }
     public DbSet<Area> Area { get; set; }
+    public DbSet<Offer> Offer { get; set; }
 }
