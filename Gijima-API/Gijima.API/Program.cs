@@ -1,4 +1,5 @@
 using Gijima.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(
         connectionString, x => x.MigrationsHistoryTable("_Migrations", schema: "Gijima")
     )
 );
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequiredLength = 6;
+        options.Password.RequiredUniqueChars = 1;
+        options.User.RequireUniqueEmail = true;
+    }).AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddUserManager<UserManager<ApplicationUser>>()
+    .AddRoleManager<RoleManager<IdentityRole>>()
+    .AddSignInManager<SignInManager<ApplicationUser>>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
