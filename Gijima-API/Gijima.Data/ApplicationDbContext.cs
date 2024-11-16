@@ -19,7 +19,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5436;Database=app;Username=admin;Password=admin;");
+        optionsBuilder.UseNpgsql("Host=postgres-db;Port=5432;Database=app;Username=admin;Password=admin;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

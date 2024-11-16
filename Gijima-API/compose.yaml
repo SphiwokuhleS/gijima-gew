@@ -1,6 +1,27 @@
 ﻿services:
   gijima.api:
-    image: gijima.api
+    image: gijima.ap
     build:
       context: .
       dockerfile: Gijima.API/Dockerfile
+    ports:
+      - "8181:8080"
+    networks:
+      - gijima-network
+
+  postgres-db:
+      image: postgres
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: admin
+        POSTGRES_USER: admin
+        POSTGRES_DB: app
+      ports:
+        - "5436:5432"
+      networks:
+      - gijima-network
+
+networks:
+  gijima-network:
+    driver: bridge
+
