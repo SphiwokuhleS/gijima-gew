@@ -3,6 +3,7 @@ using System;
 using Gijima.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gijima.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241117085909_AreasSeed")]
+    partial class AreasSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,6 +138,53 @@ namespace Gijima.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Area", "gijima");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 10,
+                            Address1 = "Langa Main Road",
+                            Address2 = "Zone 1",
+                            CreatedAt = new DateTime(2024, 11, 17, 8, 59, 9, 81, DateTimeKind.Utc).AddTicks(7443),
+                            Name = "Langa",
+                            Postcode = 8000
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Address1 = "Khayelitsha Main Road",
+                            Address2 = "Zone 2",
+                            CreatedAt = new DateTime(2024, 11, 17, 8, 59, 9, 81, DateTimeKind.Utc).AddTicks(7487),
+                            Name = "Khayelitsha",
+                            Postcode = 8001
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Address1 = "Gugulethu Main Road",
+                            Address2 = "Zone 3",
+                            CreatedAt = new DateTime(2024, 11, 17, 8, 59, 9, 81, DateTimeKind.Utc).AddTicks(7493),
+                            Name = "Gugulethu",
+                            Postcode = 8002
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Address1 = "Manenberg Main Road",
+                            Address2 = "Zone 4",
+                            CreatedAt = new DateTime(2024, 11, 17, 8, 59, 9, 81, DateTimeKind.Utc).AddTicks(7495),
+                            Name = "Manenberg",
+                            Postcode = 8003
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Address1 = "Athlone Main Road",
+                            Address2 = "Zone 5",
+                            CreatedAt = new DateTime(2024, 11, 17, 8, 59, 9, 81, DateTimeKind.Utc).AddTicks(7497),
+                            Name = "Athlone",
+                            Postcode = 8004
+                        });
                 });
 
             modelBuilder.Entity("Gijima.Data.DataModels.Job", b =>
@@ -161,15 +211,6 @@ namespace Gijima.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text")
                         .HasAnnotation("Relational:JsonPropertyName", "description");
-
-                    b.Property<DateTime?>("JobDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("Longitude")
-                        .HasColumnType("double precision");
 
                     b.Property<int>("Price")
                         .HasColumnType("integer")
@@ -226,7 +267,7 @@ namespace Gijima.Data.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("text");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
