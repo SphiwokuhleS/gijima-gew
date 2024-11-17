@@ -10,7 +10,7 @@ public class Offer : BaseDataModel
     [JsonPropertyName("job_id")]
     public int? JobId { get; set; }
     public Job? Job { get; set; }
-    public int Price { get; set; } = 0;
+    public int? Price { get; set; } = 0;
     public bool Accepted { get; set; } = false;
     public string? Note { get; set; }
 }
