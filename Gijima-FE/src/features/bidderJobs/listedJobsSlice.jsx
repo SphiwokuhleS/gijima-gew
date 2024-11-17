@@ -4,7 +4,7 @@ import ListedJobModel from "./listedJobModel.jsx";
 
 const initialState = {
     jobs: [
-        new ListedJobModel({
+        {
             "id": 1,
             "user_id": 2,
             "customer_id": 3,
@@ -16,8 +16,8 @@ const initialState = {
             "created_at": "2024-02-05T15:00:00Z",
             "bid": null,
             "bids": [],
-        }),
-        new ListedJobModel({
+        },
+        {
             "id": 2,
             "user_id": 3,
             "customer_id": 1,
@@ -29,8 +29,8 @@ const initialState = {
             "created_at": "2024-02-10T11:00:00Z",
             "bid": null,
             "bids": [],
-        }),
-        new ListedJobModel({
+        },
+        {
             "id": 3,
             "user_id": 1,
             "customer_id": 2,
@@ -42,8 +42,8 @@ const initialState = {
             "created_at": "2024-02-01T12:00:00Z",
             "bid": null,
             "bids": [],
-        }),
-        new ListedJobModel({
+        },
+        {
             "id": 4,
             "user_id": 2,
             "customer_id": 3,
@@ -55,8 +55,8 @@ const initialState = {
             "created_at": "2024-02-05T15:00:00Z",
             "bid": null,
             "bids": [],
-        }),
-        new ListedJobModel({
+        },
+        {
             "id": 5,
             "user_id": 3,
             "customer_id": 1,
@@ -68,8 +68,8 @@ const initialState = {
             "created_at": "2024-02-10T11:00:00Z",
             "bid": null,
             "bids": [],
-        }),
-        new ListedJobModel({
+        },
+       {
             "id": 6,
             "user_id": 1,
             "customer_id": 2,
@@ -81,8 +81,8 @@ const initialState = {
             "created_at": "2024-02-01T12:00:00Z",
             "bid": null,
             "bids": [],
-        }),
-        new ListedJobModel({
+        },
+        {
             "id": 7,
             "user_id": 2,
             "customer_id": 3,
@@ -94,8 +94,8 @@ const initialState = {
             "created_at": "2024-02-05T15:00:00Z",
             "bid": null,
             "bids": [],
-        }),
-        new ListedJobModel({
+        },
+        {
             "id": 8,
             "user_id": 3,
             "customer_id": 1,
@@ -107,7 +107,7 @@ const initialState = {
             "created_at": "2024-02-10T11:00:00Z",
             "bid": null,
             "bids": [],
-        })
+        }
     ],
 };
 
@@ -122,12 +122,15 @@ const listedJobsSlice = createSlice({
             const { jobId, bidAmount, bidDescription } = action.payload;
             const jobIndex = state.jobs.findIndex((job) => job.id === jobId);
             if (jobIndex !== -1) {
-                state.jobs[jobIndex].bid = {
-                    amount: bidAmount,
-                    description: bidDescription,
+                state.jobs[jobIndex] = {
+                    ...state.jobs[jobIndex],
+                    bid: {
+                        amount: bidAmount,
+                        description: bidDescription,
+                    },
                 };
             }
-        },
+        }
     },
 });
 
