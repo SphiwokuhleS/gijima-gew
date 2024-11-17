@@ -118,6 +118,17 @@ const listedJobsSlice = createSlice({
         setJobs: (state, action) => {
             state.jobs = action.payload.map((job) => new ListedJobModel(job));
         },
+        addJob: (state, action) => {
+            // Return a new state with the new job added to the jobs array
+            const job = {
+                id: state.jobs.length + 1,
+                bid: null,
+                bids: [],
+                ...action.payload,
+            }
+            state.jobs = [...state.jobs, job];
+            console.log(state.jobs, action.payload)
+        },
         setBid: (state, action) => {
             const { jobId, bidAmount, bidDescription } = action.payload;
             const jobIndex = state.jobs.findIndex((job) => job.id === jobId);
@@ -134,5 +145,5 @@ const listedJobsSlice = createSlice({
     },
 });
 
-export const { setBid, setJobs } = listedJobsSlice.actions;
+export const { setBid, setJobs, addJob } = listedJobsSlice.actions;
 export const listedJobsReducer = listedJobsSlice.reducer;

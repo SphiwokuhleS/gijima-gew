@@ -5,17 +5,16 @@ import {setJobs} from "../features/bidderJobs/listedJobsSlice.jsx";
 
 export default function JobsList() {
     // const jobs = make call to api to get jobs
+    console.log("loaded")
     const dispatch = useDispatch();
     const listedJobs = useSelector((state) => state.listedJobs.jobs);
-
-
-
+    console.log(listedJobs)
     useEffect(() => {
         const fetchJobs = async () => {
             try {
                 const response = await fetch("/api/jobs");
                 const jobs = await response.json();
-                dispatch(setJobs(jobs));
+                // dispatch(setJobs(jobs));
             } catch (error) {
                 console.error("Failed to fetch jobs:", error);
             }
