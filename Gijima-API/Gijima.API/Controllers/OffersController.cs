@@ -81,10 +81,50 @@ public class OffersController (ApplicationDbContext db) : Controller
         await _db.SaveChangesAsync();
 
         result.Success = true;
-        
+
         return Json(result);
     }
 
     #endregion
-    
+
+    [HttpPost]
+    public async Task<JsonResult> SetOfferToAccepted(int id)
+    {
+        var result = new JsonResultVm
+        {
+            Success = false
+        };
+        
+        var offer = await _db.Offer.FindAsync(id);
+
+        if (offer == null)
+        {
+            result.Error = "Offer with ID " + id + " was not found.";
+            
+            return Json(result);
+        }
+        
+        offer.Accepted = true;
+        
+        _db.Offer.Update(offer);
+        await _db.SaveChangesAsync();
+        
+        var job = await _db.Jobs.FindAsync(offer.JobId);
+
+        if (job == null)
+        {
+            result.Message = "Could not find job";
+            return Json(result);
+        }
+
+        job.ProviderId = offer.UserId;
+        
+        _db.Jobs.Update(job);
+        await _db.SaveChangesAsync();
+
+        result.Success = true;
+        
+        return Json(result);
+    }
+
 }
