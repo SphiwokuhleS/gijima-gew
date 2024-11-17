@@ -20,4 +20,7 @@ public class Job : BaseDataModel
                 public int Price {get; set;}
                 [JsonPropertyName("active")]
                 public bool Active {get; set;}
+                public double? Latitude {get; set;}
+                public double? Longitude {get; set;}
+                public DateTime? JobDate {get; set;}
 }   

@@ -20,13 +20,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql("Host=postgres-db;Port=5432;Database=app;Username=admin;Password=admin;");
+        
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.HasDefaultSchema(_schema);
-        modelBuilder.Seed();
+        // modelBuilder.Seed();
+         //modelBuilder.SeedAreas();
     }
     
     public DbSet<Job> Jobs { get; set; }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Gijima.Data.DataModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gijima.Data
@@ -34,6 +35,30 @@ namespace Gijima.Data
 
             modelBuilder.Entity<ApplicationUser>().HasData(users.ToArray());
         }
+        
+        public static void SeedAreas(this ModelBuilder modelBuilder)
+        {
+            var townships = new List<string> { "Langa", "Khayelitsha", "Gugulethu", "Manenberg", "Athlone" };
+            var areas = new List<Area>();
+
+            for (int i = 0; i < townships.Count; i++)
+            {
+                var area = new Area
+                {
+                    Id = (i + 10),
+                    Name = townships[i],
+                    Address1 = $"{townships[i]} Main Road",
+                    Address2 = $"Zone {i + 1}",
+                    Postcode = 8000 + i,
+                    UserId = null
+                };
+                areas.Add(area);
+            }
+
+            modelBuilder.Entity<Area>().HasData(areas.ToArray());
+        }
 
     }
+    
+    
 }
