@@ -7,7 +7,6 @@ export default function Job() {
     const { id } = useParams();
     const jobId = parseInt(id);
 
-    // Use the jobId to select the job from the Redux store
     const selectedJob = useSelector((state) =>
         state.listedJobs.jobs.find((job) => job.id === jobId)
     );
@@ -26,7 +25,10 @@ export default function Job() {
             <div className="mb-4">
                 <p className="font-bold">R {selectedJob.price}</p>
             </div>
-            <CreateBid />
+            {selectedJob.bid ?
+                <p>Yourbid</p>:
+                <CreateBid />
+            }
         </Tile>
     );
 }

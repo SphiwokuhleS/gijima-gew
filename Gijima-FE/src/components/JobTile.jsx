@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 export default function ({job}) {
     const navigate = useNavigate();
     function goToJobDetail(id) {
-        console.log(id + " clicked");
         navigate(`/job/${id}`);
     }
     return (
