@@ -5,6 +5,7 @@ import Login from "./components/Login.jsx";
 import HomePage from "./components/HomePage.jsx";
 import JobsList from "./components/JobsList.jsx";
 import Job from "./components/Job.jsx";
+import CreateOrEditJob from "./components/CreateOrEditJob.jsx";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     {/* Add more protected routes here */}
                     <Route path="/jobs" element={<JobsList/>}/>
                     <Route path="/job/:id" element={<Job/>}/>
+                    <Route path="/job/create" element={<CreateOrEditJob/>}/>
                 </Route>
             </Routes>
         </Router>
