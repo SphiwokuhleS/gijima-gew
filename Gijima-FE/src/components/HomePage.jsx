@@ -30,7 +30,7 @@ export default function HomePage() {
 
     return (
         <div className="flex flex-col items-center h-svh">
-            <div className="rounded-b-3xl bg-gray-700 w-full pt-4 pb-8 flex flex-col items-center">
+            <div className="rounded-b-3xl bg-gray-700 w-full pt-4 pb-12 flex flex-col items-center">
                 <ProfilePic rating={user.stars}/>
                 <h1 className="mt-4 text-2xl text-white">{user.username}</h1>
                 <p className="text-white text-sm mb-4">{user.prefered_work}</p>

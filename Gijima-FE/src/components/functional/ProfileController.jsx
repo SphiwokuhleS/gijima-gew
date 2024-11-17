@@ -2,8 +2,14 @@ import Tile from "../layout/Tile.jsx";
 import moneyIcon from "../../assets/money.png";
 import auctionIcon from "../../assets/auction.png";
 import chevronIcon from "../../assets/chevron-right.svg";
+import Button from "./Button.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function ProfileController({isOpen = false, changeLayout}) {
+    const navigate = useNavigate()
+    function redirectToCreateJob() {
+        navigate('/job/create')
+    }
     return (
         <div className="px-2 py-4">
             {!isOpen ?
@@ -19,6 +25,7 @@ export default function ProfileController({isOpen = false, changeLayout}) {
                 </div>
             </div>:
                 <>
+                    <h2 className="text-2xl font-bold text-center mb-4">Welcome Back!</h2>
                     <Tile
                         classes="bg-gray-200"
                         onClick={() => changeLayout('jobs')}>
@@ -53,6 +60,10 @@ export default function ProfileController({isOpen = false, changeLayout}) {
                             src={chevronIcon}
                             alt="chevron icon" />
                     </Tile>
+                    <Button
+                        text="Create Job"
+                        onClick={redirectToCreateJob}
+                    />
                 </>
             }
         </div>

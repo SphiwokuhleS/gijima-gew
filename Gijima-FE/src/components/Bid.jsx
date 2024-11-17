@@ -9,9 +9,9 @@ export default function Bid({bid}) {
     }
     return (
         <Tile classes="bg-gray-200" onClick={() => goToJobDetail(jobId)}>
-            <h2 className="text-lg text-semibold">{bid.job_title}</h2>
+            <h2 className="text-lg text-semibold">{bid.jobTitle}</h2>
             <p>{bid.description}</p>
-            <p>R{bid.amount}</p>
+            <p className="self-end text-bold">R{bid.amount}</p>
         </Tile>
     )
 }

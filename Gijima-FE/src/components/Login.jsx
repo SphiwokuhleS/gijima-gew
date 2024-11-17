@@ -19,13 +19,11 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            console.log(api)
 
             // const response = await api.post(`/Login/PostLogin`, { Username: email, Password: password });
 
             // const { token } = response.data;
 
-            // console.log(token);
             const token = "MockToken"
 
             localStorage.setItem('token', token);

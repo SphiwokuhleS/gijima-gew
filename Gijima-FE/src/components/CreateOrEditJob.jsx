@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "./functional/Input.jsx";
 import Button from "./functional/Button.jsx";
-import { addJob } from "../features/bidderJobs/listedJobsSlice.jsx"; // Make sure the path is correct
+import { addJob } from "../features/bidderJobs/listedJobsSlice.jsx";
+import {useNavigate} from "react-router-dom"; // Make sure the path is correct
 
 export default function CreateOrEditJob({ jobId }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // Local state for form data
     const [formData, setFormData] = useState({
@@ -55,6 +57,7 @@ export default function CreateOrEditJob({ jobId }) {
         };
 
         dispatch(addJob(newJob));
+        navigate("/");
     };
 
     return (
@@ -63,7 +66,7 @@ export default function CreateOrEditJob({ jobId }) {
                 <h1 className="text-4xl self-center mb-4">
                     {jobId ? "Edit Job" : "Create Job"}
                 </h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="flex flex-col">
                     <Input
                         classes="mb-4"
                         type="date"

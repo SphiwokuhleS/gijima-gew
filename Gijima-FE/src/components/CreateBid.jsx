@@ -23,7 +23,7 @@ export default function CreateBid({jobId}) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="flex flex-col">
                 <h2 className="text-2xl mb-4">Create a Bid</h2>
 
                 <Input
