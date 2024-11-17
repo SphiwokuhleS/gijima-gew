@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Tile from "./layout/Tile.jsx";
 import { useParams } from "react-router-dom";
 import CreateBid from "./CreateBid.jsx";
+import Bid from "./Bid.jsx";
 
 export default function Job() {
     const { id } = useParams();
@@ -26,7 +27,7 @@ export default function Job() {
                 <p className="font-bold">R {selectedJob.price}</p>
             </div>
             {selectedJob.bid ?
-                <p>Yourbid</p>:
+                <Bid bid={selectedJob.bid} />:
                 <CreateBid />
             }
         </Tile>
