@@ -21,12 +21,12 @@ export default function Login() {
         try {
             console.log(api)
 
-            const response = await axios.post(`/Login/PostLogin`, { Username: email, Password: password });
+            // const response = await api.post(`/Login/PostLogin`, { Username: email, Password: password });
 
-            const { token } = response.data;
+            // const { token } = response.data;
 
-            console.log(token);
-            // const token = "MockToken"
+            // console.log(token);
+            const token = "MockToken"
 
             localStorage.setItem('token', token);
             dispatch(setAuthState({ email, token }));
@@ -51,7 +51,7 @@ export default function Login() {
                         Password:<br/>
                         <Input classes="mb-4" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     </label><br/><br/>
-                    <Button type="submit"/>
+                    <Button type="submit">Login</Button>
                 </div>
             </div>
         </form>

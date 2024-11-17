@@ -28,7 +28,7 @@ export default function Job() {
             </div>
             {selectedJob.bid ?
                 <Bid bid={selectedJob.bid} />:
-                <CreateBid />
+                <CreateBid jobId={selectedJob.id}/>
             }
         </Tile>
     );

@@ -15,7 +15,7 @@ const initialState = {
             "price": 750,
             "created_at": "2024-02-05T15:00:00Z",
             "bid": null,
-
+            "bids": [],
         }),
         new ListedJobModel({
             "id": 2,
@@ -28,6 +28,7 @@ const initialState = {
             "price": 2000,
             "created_at": "2024-02-10T11:00:00Z",
             "bid": null,
+            "bids": [],
         }),
         new ListedJobModel({
             "id": 3,
@@ -40,6 +41,7 @@ const initialState = {
             "price": 1500,
             "created_at": "2024-02-01T12:00:00Z",
             "bid": null,
+            "bids": [],
         }),
         new ListedJobModel({
             "id": 4,
@@ -52,6 +54,7 @@ const initialState = {
             "price": 750,
             "created_at": "2024-02-05T15:00:00Z",
             "bid": null,
+            "bids": [],
         }),
         new ListedJobModel({
             "id": 5,
@@ -64,6 +67,7 @@ const initialState = {
             "price": 2000,
             "created_at": "2024-02-10T11:00:00Z",
             "bid": null,
+            "bids": [],
         }),
         new ListedJobModel({
             "id": 6,
@@ -76,6 +80,7 @@ const initialState = {
             "price": 1500,
             "created_at": "2024-02-01T12:00:00Z",
             "bid": null,
+            "bids": [],
         }),
         new ListedJobModel({
             "id": 7,
@@ -88,6 +93,7 @@ const initialState = {
             "price": 750,
             "created_at": "2024-02-05T15:00:00Z",
             "bid": null,
+            "bids": [],
         }),
         new ListedJobModel({
             "id": 8,
@@ -100,6 +106,7 @@ const initialState = {
             "price": 2000,
             "created_at": "2024-02-10T11:00:00Z",
             "bid": null,
+            "bids": [],
         })
     ],
 };
@@ -112,10 +119,15 @@ const listedJobsSlice = createSlice({
             state.jobs = action.payload.map((job) => new ListedJobModel(job));
         },
         setBid: (state, action) => {
-            const { bid } = action.payload;
-            state.bid = bid;
+            const { jobId, bidAmount, bidDescription } = action.payload;
+            const jobIndex = state.jobs.findIndex((job) => job.id === jobId);
+            if (jobIndex !== -1) {
+                state.jobs[jobIndex].bid = {
+                    amount: bidAmount,
+                    description: bidDescription,
+                };
+            }
         },
-        // Add other reducers if necessary
     },
 });
 

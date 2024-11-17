@@ -8,6 +8,8 @@ export default function JobsList() {
     const dispatch = useDispatch();
     const listedJobs = useSelector((state) => state.listedJobs.jobs);
 
+
+
     useEffect(() => {
         const fetchJobs = async () => {
             try {

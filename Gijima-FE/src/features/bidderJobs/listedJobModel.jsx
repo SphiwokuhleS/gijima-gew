@@ -10,6 +10,7 @@ export default class ListedJobModel {
                     price,
                     created_at,
                     bid,
+                    bids,
                 }) {
         this.id = id;
         this.user_id = user_id;
@@ -21,5 +22,6 @@ export default class ListedJobModel {
         this.price = price;
         this.created_at = created_at;
         this.bid = bid;
+        this.bids = bids;
     }
 }
