@@ -1,4 +1,4 @@
-import Job from "./Job.jsx";
+import Job from "./JobTile.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {setJobs} from "../features/bidderJobs/listedJobsSlice.jsx";
