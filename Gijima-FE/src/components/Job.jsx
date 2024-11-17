@@ -1,12 +1,20 @@
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Tile from "./layout/Tile.jsx";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CreateBid from "./CreateBid.jsx";
 
 export default function Job() {
-    const {id} = useParams();
-    useDispatch();
-    const selectedJob = useSelector((state) => state.listedJobs.jobs[id]);
+    const { id } = useParams();
+    const jobId = parseInt(id);
+
+    // Use the jobId to select the job from the Redux store
+    const selectedJob = useSelector((state) =>
+        state.listedJobs.jobs.find((job) => job.id === jobId)
+    );
+
+    if (!selectedJob) {
+        return <div>Job not found</div>;
+    }
 
     return (
         <Tile classes="h-svh flex flex-col p-4">
@@ -20,5 +28,5 @@ export default function Job() {
             </div>
             <CreateBid />
         </Tile>
-    )
+    );
 }

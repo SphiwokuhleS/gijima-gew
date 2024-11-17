@@ -5,8 +5,8 @@ export default function Bid({bid}) {
         <div>
             <h1>Bid Number {bid.id}</h1>
             <p>{bid.note}</p>
-            <Button />
             <p>{bid.price}</p>
+            <Button text="Retract" />
         </div>
     )
 }

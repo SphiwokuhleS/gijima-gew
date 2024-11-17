@@ -1,10 +1,16 @@
 import completeIcon from '../assets/icons8-complete.svg';
 import pendingIcon from '../assets/icons8-pending.svg';
 import Tile from "./layout/Tile.jsx";
+import { useNavigate } from 'react-router-dom';
 
 export default function ({job}) {
+    const navigate = useNavigate();
+    function goToJobDetail(id) {
+        console.log(id + " clicked");
+        navigate(`/job/${id}`);
+    }
     return (
-        <Tile classes="bg-gray-200">
+        <Tile classes="bg-gray-200" onClick={() => goToJobDetail(job.id)}>
             <div className="flex justify-between">
                 <h1 className="text-lg font-bold">{job.title}</h1>
                 <p className="text-sm italic leading-7">{job.date}</p>
