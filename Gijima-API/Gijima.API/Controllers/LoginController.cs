@@ -45,7 +45,9 @@ public class LoginController(ApplicationDbContext db, IConfiguration config,
 
         return Ok(new
         {
-            accessToken = tokenString
+            accessToken = tokenString,
+            user_id = user.Id,
+            user_email = user.Email
         });
     }
     
